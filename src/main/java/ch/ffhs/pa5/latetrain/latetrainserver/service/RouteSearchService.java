@@ -1,5 +1,6 @@
 package ch.ffhs.pa5.latetrain.latetrainserver.service;
 
+import ch.ffhs.pa5.latetrain.latetrainserver.model.RouteResults;
 import ch.ffhs.pa5.latetrain.latetrainserver.model.RouteSearch;
 import ch.ffhs.pa5.latetrain.latetrainserver.model.UserConnection;
 import java.util.HashMap;
@@ -24,7 +25,7 @@ public class RouteSearchService {
     @Autowired
     RestTemplate restTemplate;
 
-    public String getRouteSearchResult(UserConnection userConnection) {
+    public RouteResults getRouteSearchResult(UserConnection userConnection) {
         String target = url + uri;
 
         target = UriComponentsBuilder.fromHttpUrl(target)
@@ -32,7 +33,7 @@ public class RouteSearchService {
                                      .queryParam("to", userConnection.getTo())
                                      .queryParam("time", userConnection.getDepartureTimeOfDay().toString())
                                      .build().toString();
-        ResponseEntity<String> forEntity = restTemplate.getForEntity(target, String.class);
+        ResponseEntity<RouteResults> forEntity = restTemplate.getForEntity(target, RouteResults.class);
 
         return forEntity.getBody();
     }

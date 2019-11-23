@@ -32,7 +32,7 @@ public class DefaultUserConnectionService implements UserConnectionService {
 
     @Override
     public List<UserConnection> readAllByCurrentUser() {
-        return repository.findAll().;
+        return null;
     }
 
     @Override
@@ -42,10 +42,7 @@ public class DefaultUserConnectionService implements UserConnectionService {
 
     @Override
     public RouteResults getEffectiveRoutesForUserConnectionWithId(Long userConnectionId) {
-        String response = routeSearchService.getRouteSearchResult(repository.getOne(userConnectionId));
-
-
-        return null;
+        return routeSearchService.getRouteSearchResult(repository.getOne(userConnectionId));
     }
 
     @Override

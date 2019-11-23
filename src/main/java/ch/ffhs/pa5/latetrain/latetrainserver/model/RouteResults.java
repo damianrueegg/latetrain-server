@@ -13,6 +13,6 @@ import java.util.Set;
 public class RouteResults {
 
     private int count;
-    private List<Route> routes;
+    private List<Route> connections;
 
 }

@@ -6,12 +6,11 @@ import java.time.LocalTime;
 import java.util.EnumSet;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class UserConnection {
 

@@ -1,5 +1,6 @@
 package ch.ffhs.pa5.latetrain.latetrainserver.service;
 
+import ch.ffhs.pa5.latetrain.latetrainserver.model.Route;
 import ch.ffhs.pa5.latetrain.latetrainserver.model.RouteResults;
 import ch.ffhs.pa5.latetrain.latetrainserver.model.UserConnection;
 import ch.ffhs.pa5.latetrain.latetrainserver.model.repository.UserConnectionRepository;
@@ -51,8 +52,11 @@ public class DefaultUserConnectionService implements UserConnectionService {
 
     @Override
     public UserConnection updateUserConnectionDetailsAccordingToEffectiveRoute(Long id, int routeIndex) {
+        Route effectiveRoute = getEffectiveRoutesForUserConnectionWithId(id).getConnections().get(routeIndex);
         UserConnection connection = repository.getOne(id);
-
-        return null;
+        connection.setFrom(effectiveRoute.getFrom());
+        connection.setTo(effectiveRoute.getTo());
+        connection.setDepartureTimeOfDay(effectiveRoute.getDeparture().toLocalTime());
+        return repository.save(connection);
     }
 }

@@ -29,10 +29,11 @@ public class RouteSearchService {
         String target = url + uri;
 
         target = UriComponentsBuilder.fromHttpUrl(target)
-                                     .queryParam("from", userConnection.getFrom())
-                                     .queryParam("to", userConnection.getTo())
-                                     .queryParam("time", userConnection.getDepartureTimeOfDay().toString())
-                                     .build().toString();
+                                         .queryParam("from", userConnection.getFrom())
+                                         .queryParam("to", userConnection.getTo())
+                                         .queryParam("time", userConnection.getDepartureTimeOfDay().toString())
+                                            .queryParam("num", "${latetrain.external.routesnum")
+                                         .build().toString();
         ResponseEntity<RouteResults> forEntity = restTemplate.getForEntity(target, RouteResults.class);
 
         return forEntity.getBody();

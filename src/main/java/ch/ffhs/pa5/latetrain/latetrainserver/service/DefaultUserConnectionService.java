@@ -21,7 +21,7 @@ public class DefaultUserConnectionService implements UserConnectionService {
 
     @Override
     public UserConnection readUserConnectionById(Long id) {
-        return null;
+        return repository.getOne(id);
     }
 
     @Override
@@ -32,21 +32,26 @@ public class DefaultUserConnectionService implements UserConnectionService {
 
     @Override
     public List<UserConnection> readAllByCurrentUser() {
-        return null;
+        return repository.findAll().;
     }
 
     @Override
     public void deleteUserConnectionById(Long id) {
-
+        repository.deleteById(id);
     }
 
     @Override
     public RouteResults getEffectiveRoutesForUserConnectionWithId(Long userConnectionId) {
+        String response = routeSearchService.getRouteSearchResult(repository.getOne(userConnectionId));
+
+
         return null;
     }
 
     @Override
     public UserConnection updateUserConnectionDetailsAccordingToEffectiveRoute(Long id, int routeIndex) {
+        UserConnection connection = repository.getOne(id);
+
         return null;
     }
 }

@@ -1,47 +1,34 @@
 package ch.ffhs.pa5.latetrain.latetrainserver.model;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 import lombok.Data;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 @Data
 @Entity
+@NoArgsConstructor
 public class User {
 
-    private @Id @GeneratedValue Long id;
+    @Id
+    @GeneratedValue
+    private Long   id;
+
+    @NonNull @NotEmpty
     private String username;
+
+    @NonNull @NotEmpty
     private String password;
+    @Transient
+    private String passwordConfirm;
 
-    User() {}
+    private String role = "MOBILE_USER";
 
-    User(String username, String password){
-        this.username = username;
-        this.password = password;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    private Set<UserConnection> connections;
 }

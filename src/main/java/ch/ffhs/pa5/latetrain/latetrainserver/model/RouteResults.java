@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -11,5 +12,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class RouteResults {
 
-    private Set<Route> routes;
+    private int count;
+    private List<Route> routes;
+
 }

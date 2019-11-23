@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 @Data
 @NoArgsConstructor
@@ -12,6 +12,7 @@ import java.time.LocalTime;
 public class Route {
 
     private String from;
+    private LocalDateTime departure;
     private String to;
-    private LocalTime departureTimeOfDay;
+    private LocalDateTime arrival;
 }

@@ -8,7 +8,7 @@ import java.util.List;
 public interface UserConnectionService {
     UserConnection readUserConnectionById(Long id);
     List<UserConnection> readAllByCurrentUser();
-    void deleteUserConnectionById();
+    void deleteUserConnectionById(Long id);
     RouteResults getEffectiveRoutesForUserConnectionWithId(Long userConnectionId);
     UserConnection updateUserConnectionDetailsAccordingToEffectiveRoute(Long id, int routeIndex);
 }

@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface UserConnectionService {
     UserConnection readUserConnectionById(Long id);
+    UserConnection createUserConnection(UserConnection userConnection);
     List<UserConnection> readAllByCurrentUser();
     void deleteUserConnectionById(Long id);
     RouteResults getEffectiveRoutesForUserConnectionWithId(Long userConnectionId);

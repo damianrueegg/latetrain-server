@@ -4,6 +4,7 @@ import ch.ffhs.pa5.latetrain.latetrainserver.model.RouteResults;
 import ch.ffhs.pa5.latetrain.latetrainserver.model.UserConnection;
 import ch.ffhs.pa5.latetrain.latetrainserver.model.repository.UserConnectionRepository;
 import ch.ffhs.pa5.latetrain.latetrainserver.security.SecurityContextService;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +33,10 @@ public class DefaultUserConnectionService implements UserConnectionService {
 
     @Override
     public List<UserConnection> readAllByCurrentUser() {
-        return null;
+        return repository.findAll()
+                         .stream()
+                         .filter(it -> it.getUser().getUsername().equals(securityContextService.findLoggedInUsername()))
+                         .collect(Collectors.toList());
     }
 
     @Override

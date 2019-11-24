@@ -20,12 +20,12 @@ public class UserConnectionController {
         return userConnectionService.createUserConnection(userConnection);
     }
 
-    @GetMapping("/userConnection/{id}/effectiveRoutes")
+    @GetMapping("/userConnection/{id}/effectiveRoute")
     public RouteResults getEffectiveRoutesForConnection(@PathVariable Long id){
         return userConnectionService.getEffectiveRoutesForUserConnectionWithId(id);
     }
 
-    @PatchMapping("/userConnection/{id}/effectiveRoutes{routeIndex}")
+    @PatchMapping("/userConnection/{id}/effectiveRoute/{routeIndex}")
     public UserConnection updateAccordingToRoute(@PathVariable Long id, @PathVariable int routeIndex){
         return userConnectionService.updateUserConnectionDetailsAccordingToEffectiveRoute(id, routeIndex);
     }

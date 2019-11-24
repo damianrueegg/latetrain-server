@@ -22,6 +22,9 @@ public class RouteSearchService {
     @Value("${latetrain.external.api.routeuri}")
     private String uri;
 
+    @Value("${latetrain.external.routesnum}")
+    private int numberOfResults;
+
     @Autowired
     RestTemplate restTemplate;
 
@@ -29,11 +32,11 @@ public class RouteSearchService {
         String target = url + uri;
 
         target = UriComponentsBuilder.fromHttpUrl(target)
-                                         .queryParam("from", userConnection.getFrom())
-                                         .queryParam("to", userConnection.getTo())
-                                         .queryParam("time", userConnection.getDepartureTimeOfDay().toString())
-                                            .queryParam("num", "${latetrain.external.routesnum")
-                                         .build().toString();
+                                     .queryParam("from", userConnection.getFrom())
+                                     .queryParam("to", userConnection.getTo())
+                                     .queryParam("time", userConnection.getDepartureTimeOfDay().toString())
+                                     .queryParam("num", String.valueOf(numberOfResults))
+                                     .build().toString();
         ResponseEntity<RouteResults> forEntity = restTemplate.getForEntity(target, RouteResults.class);
 
         return forEntity.getBody();

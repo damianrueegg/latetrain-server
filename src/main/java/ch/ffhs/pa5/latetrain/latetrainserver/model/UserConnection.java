@@ -1,5 +1,8 @@
 package ch.ffhs.pa5.latetrain.latetrainserver.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -12,6 +15,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler"})
 public class UserConnection {
 
     private @Id @GeneratedValue Long id;
@@ -25,7 +29,12 @@ public class UserConnection {
     @NonNull
     private EnumSet<DayOfWeek> occurrence;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER) @JsonIgnore
     private User user;
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    public Long getUserId() {
+        return user.getId();
+    }
 
 }

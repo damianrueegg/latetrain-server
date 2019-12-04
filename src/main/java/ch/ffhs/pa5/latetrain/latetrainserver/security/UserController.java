@@ -22,7 +22,7 @@ public class UserController {
         userManagementService.register(user);
         securityContextService.autologin(user.getUsername(), user.getPasswordConfirm());
         try {
-            response.sendRedirect("/");
+            response.sendRedirect("/api/userConnection");
         } catch (IOException e) {
             e.printStackTrace();
         }
